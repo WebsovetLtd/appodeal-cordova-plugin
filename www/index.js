@@ -6,11 +6,12 @@ var exec = require('cordova/exec');
 var SERVICE = 'Appodeal';
 
 Appodeal.INTERSTITIAL = 3;
-Appodeal.BANNER = 4;
 Appodeal.BANNER_BOTTOM = 8;
 Appodeal.BANNER_TOP = 16;
+Appodeal.BANNER_LEFT = 1024;
+Appodeal.BANNER_RIGHT = 2048;
 Appodeal.REWARDED_VIDEO = 128;
-Appodeal.NON_SKIPPABLE_VIDEO = 256;
+Appodeal.MREC = 256;
 Appodeal.NATIVE = 512;
 
 Appodeal.BANNER_X_SMART = 0;
@@ -25,9 +26,9 @@ Appodeal.LogLevel = {
 };
 
 Appodeal.Gender = {
-    OTHER: 0,
-    MALE: 1,
-    FEMALE: 2
+  OTHER: 0,
+  MALE: 1,
+  FEMALE: 2
 };
 
 Appodeal.pluginVersion = '3.2.0';
