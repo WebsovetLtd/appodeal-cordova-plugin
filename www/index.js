@@ -5,14 +5,15 @@ var exec = require('cordova/exec');
 
 var SERVICE = 'Appodeal';
 
-Appodeal.INTERSTITIAL = 3;
-Appodeal.BANNER_BOTTOM = 8;
-Appodeal.BANNER_TOP = 16;
-Appodeal.BANNER_LEFT = 1024;
-Appodeal.BANNER_RIGHT = 2048;
-Appodeal.REWARDED_VIDEO = 128;
-Appodeal.MREC = 256;
-Appodeal.NATIVE = 512;
+Appodeal.INTERSTITIAL = 3;     // 000000000011
+Appodeal.BANNER = 4;           // 000000000100
+Appodeal.BANNER_BOTTOM = 8;    // 000000001000
+Appodeal.BANNER_TOP = 16;      // 000000010000
+Appodeal.BANNER_LEFT = 1024;   // 010000000000
+Appodeal.BANNER_RIGHT = 2048;  // 100000000000
+Appodeal.REWARDED_VIDEO = 128; // 000010000000
+Appodeal.MREC = 256;           // 000100000000
+Appodeal.NATIVE = 512;         // 001000000000
 
 Appodeal.BANNER_X_SMART = 0;
 Appodeal.BANNER_X_CENTER = 1;
