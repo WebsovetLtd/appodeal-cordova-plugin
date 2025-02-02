@@ -27,3 +27,5 @@ npm-debug.log*
 /platforms
 /.svn
 /Android_gradle
+
+.idea
