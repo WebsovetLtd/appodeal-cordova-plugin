@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="appodeal-cordova-plugin" version="3.0.9" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="appodeal-cordova-plugin" version="3.2.0" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>Appodeal Plugin</name>
     <description>Appodeal Plugin</description>
     <keywords>appodeal</keywords>
     <author>Appodeal</author>
     <license>MIT</license>
 
-    <preference name="GOOGLE_MOBILE_ADS_SDK_APP_ID" />
-    <preference name="IOS_USER_TRACKING_USAGE_DESCRIPTION" default="Abilita il tracciamento per offrirti la migliore esperienza pubblicitaria possibile" />
+    <preference name="GOOGLE_MOBILE_ADS_SDK_APP_ID"/>
+    <preference name="IOS_USER_TRACKING_USAGE_DESCRIPTION"
+                default="Abilita il tracciamento per offrirti la migliore esperienza pubblicitaria possibile"/>
 
     <engines>
-        <engine name="cordova" version=">=6.4.0" />
-        <engine name="cordova-android" version=">=6.3.0" />
-        <engine name="cordova-ios" version=">=4.3.0" />
+        <engine name="cordova" version=">=6.4.0"/>
+        <engine name="cordova-android" version=">=6.3.0"/>
+        <engine name="cordova-ios" version=">=4.3.0"/>
     </engines>
 
     <js-module src="www/index.js" name="Appodeal">
-  		<clobbers target="window.plugins.Appodeal" />
-  	</js-module>
+        <clobbers target="window.plugins.Appodeal"/>
+    </js-module>
 
     <js-module src="tests/index.spec.js" name="index.tests" />
 
@@ -26,8 +28,8 @@
         <framework custom="true" src="src/android/build.gradle" type="gradleReference" />
 
         <config-file parent="/manifest" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
             <!--uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <optional-->
             <!--uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <optional-->
             <!--uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <optional-->
@@ -35,14 +37,23 @@
             <!--uses-permission android:name="android.permission.VIBRATE" /> <optional-->
         </config-file>
 
+        <edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
+            <manifest xmlns:tools="http://schemas.android.com/tools"/>
+        </edit-config>
+
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <uses-library
-                android:name="org.apache.http.legacy"
-                android:required="false" />
+                    android:name="org.apache.http.legacy"
+                    android:required="false"/>
 
             <meta-data
-                android:name="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="$GOOGLE_MOBILE_ADS_SDK_APP_ID" />
+                    android:name="com.google.android.gms.ads.APPLICATION_ID"
+                    android:value="$GOOGLE_MOBILE_ADS_SDK_APP_ID"/>
+
+            <property
+                    android:name="android.adservices.AD_SERVICES_CONFIG"
+                    android:resource="@xml/gma_ad_services_config"
+                    tools:replace="android:resource"/>
 
         </config-file>
 

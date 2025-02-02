@@ -30,7 +30,7 @@ Appodeal.Gender = {
     FEMALE: 2
 };
 
-Appodeal.pluginVersion = '3.0.9';
+Appodeal.pluginVersion = '3.2.0';
 
 Appodeal.initialize = function(appKey, adTypes, hasConsent, callback) {
 	exec(null, null, SERVICE, "setPluginVersion", [Appodeal.pluginVersion]);
