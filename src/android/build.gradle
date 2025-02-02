@@ -5,11 +5,11 @@ repositories {
 }
 dependencies {
     // Appodeal
-    implementation 'com.appodeal.ads:sdk:2.11.0.+'
+    implementation "com.appodeal.ads:sdk:3.4.1.0"
 
     // Consent manager
     implementation 'com.explorestack:consent:1.0.5'
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.2.0'
 }
 
 android {
