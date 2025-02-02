@@ -33,13 +33,8 @@ Appodeal.Gender = {
 
 Appodeal.pluginVersion = '3.2.0';
 
-Appodeal.initialize = function(appKey, adTypes, hasConsent, callback) {
-	exec(null, null, SERVICE, "setPluginVersion", [Appodeal.pluginVersion]);
-    exec(callback, null, SERVICE, "initialize", [appKey, adTypes, hasConsent]);
-};
-
-Appodeal.manageConsent = function(appKey, adTypes, hasConsent, callback) {
-    exec(callback, null, SERVICE, "manageConsent", [appKey, adTypes, hasConsent]);
+Appodeal.initialize = function (appKey, adTypes, callback) {
+  exec(callback, null, SERVICE, "initialize", [appKey, adTypes]);
 };
 
 Appodeal.show = function (adType, callback) {
