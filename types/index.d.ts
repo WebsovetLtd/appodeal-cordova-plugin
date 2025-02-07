@@ -6,19 +6,21 @@ interface Plugins {
   Appodeal: Appodeal
 }
 
+type successFunction = { result: any }
+type errorFunction = { result: any }
+
 declare class Appodeal {
-  initialize: (appKey: any, adTypes: any, callback: any) => void
-  manageConsent: (appKey: any, adTypes: any, hasConsent: any, callback: any) => void
-  show: (adType: any, callback: any) => void
-  showWithPlacement: (adType: any, placement: any, callback: any) => void
-  showBannerView: (xAxis: any, yAxis: any, placement: any) => void
-  isLoaded: (adType: any, callback: any) => void
+  initialize: (appKey: any, adTypes: any, callback: successFunction) => void
+  manageConsent: (appKey: any, adTypes: any, hasConsent: any, callback: successFunction) => void
+  show: (adType: any, placement: string, callback: successFunction) => void
+  showBannerView: (xAxis: any, yAxis: any, placement: string) => void
+  isLoaded: (adType: any, callback: successFunction) => void
   cache: (adType: any) => void
   hide: (adType: any) => void
   destroy: (adType: any) => void
   onResume: (adType: any) => void
   setAutoCache: (adTypes: any, autoCache: any) => void
-  isPrecache: (adType: any, callback: any) => void
+  isPrecache: (adType: any, callback: successFunction) => void
   setBannerAnimation: (value: any) => void
   setSmartBanners: (value: any) => void
   set728x90Banners: (value: any) => void
@@ -34,27 +36,27 @@ declare class Appodeal {
   disableWriteExternalStoragePermissionCheck: () => void
   muteVideosIfCallsMuted: (value: any) => void
   showTestScreen: (value: any) => void
-  getVersion: (callback: any) => void
+  getVersion: (callback: successFunction) => void
   getPluginVersion: () => string
-  isInitialized: (adTypes: any, callback: any) => void
-  canShow: (adType: any, callback: any) => void
-  canShowWithPlacement: (adType: any, placement: any, callback: any) => void
-  getRewardParameters: (callback: any) => void
-  getRewardParametersForPlacement: (placement: any, callback: any) => void
+  isInitialized: (adTypes: any, callback: successFunction) => void
+  canShow: (adType: any, callback: successFunction) => void
+  canShowWithPlacement: (adType: any, placement: string, callback: successFunction) => void
+  getRewardParameters: (callback: successFunction) => void
+  getRewardParametersForPlacement: (placement: string, callback: successFunction) => void
   setExtraData: (name: any, value: any) => void
-  getPredictedEcpm: (adType: any, callback: any) => void
-  setAge: (age: any) => void
-  setGender: (gender: any) => void
-  setUserId: (userid: any) => void
+  getPredictedEcpm: (adType: any, callback: successFunction) => void
+  setAge: (age: number) => void
+  setGender: (gender: number) => void
+  setUserId: (userid: number) => void
   trackInAppPurchase: (amount: any, currency: any) => void
   hasStatusBarPlugin: (value: any) => void
-  setInterstitialCallbacks: (callback: any) => void
+  setInterstitialCallbacks: (callback: successFunction) => void
   setNonSkippableVideoCallbacks: (callbacks: any) => void
   setRewardedVideoCallbacks: (callbacks: any) => void
   setBannerCallbacks: (callbacks: any) => void
-  setNativeCallbacks: (callback: any) => void
-  getNativeAds: (callback: any) => void
-  setNativeAdPosition: (x: any, y: any, w: any, h: any, tabH: any, callback: any) => void
-  hideNativeAd: (callback: any) => void
-  revealHiddenNativeAd: (callback: any) => void
+  setNativeCallbacks: (callback: successFunction) => void
+  getNativeAds: (callback: successFunction) => void
+  setNativeAdPosition: (x: any, y: any, w: any, h: any, tabH: any, callback: successFunction) => void
+  hideNativeAd: (callback: successFunction) => void
+  revealHiddenNativeAd: (callback: successFunction) => void
 }

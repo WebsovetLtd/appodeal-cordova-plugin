@@ -13,7 +13,6 @@ Appodeal.BANNER_LEFT = 1024;   // 010000000000
 Appodeal.BANNER_RIGHT = 2048;  // 100000000000
 Appodeal.REWARDED_VIDEO = 128; // 000010000000
 Appodeal.MREC = 256;           // 000100000000
-Appodeal.NATIVE = 512;         // 001000000000
 
 Appodeal.BANNER_X_SMART = 0;
 Appodeal.BANNER_X_CENTER = 1;
@@ -38,16 +37,8 @@ Appodeal.initialize = function (appKey, adTypes, callback) {
   exec(callback, null, SERVICE, "initialize", [appKey, adTypes]);
 };
 
-Appodeal.show = function (adType, callback) {
-  exec(callback, null, SERVICE, "show", [adType]);
-};
-
-Appodeal.showWithPlacement = function (adType, placement, callback) {
-  exec(callback, null, SERVICE, "showWithPlacement", [adType, placement]);
-};
-
-Appodeal.showBannerView = function (xAxis, yAxis, placement) {
-  exec(null, null, SERVICE, "showBannerView", [xAxis, yAxis, placement]);
+Appodeal.show = function (adType, placement, callback) {
+  exec(callback, null, SERVICE, "show", [adType, placement]);
 };
 
 Appodeal.isLoaded = function (adType, callback) {
@@ -115,11 +106,8 @@ Appodeal.setTriggerOnLoadedOnPrecache = function (set) {
 };
 
 Appodeal.disableNetwork = function (network, adType) {
-  exec(null, null, SERVICE, "disableNetwork", [network]);
-};
-
-Appodeal.disableNetworkType = function (network, adType) {
-  exec(null, null, SERVICE, "disableNetworkType", [network, adType]);
+  adType = Number(adType) || 0;
+  exec(null, null, SERVICE, "disableNetwork", [network, adType]);
 };
 
 Appodeal.disableLocationPermissionCheck = function () {
@@ -150,20 +138,12 @@ Appodeal.isInitialized = function (adTypes, callback) {
   exec(callback, null, SERVICE, "isInitialized", [adTypes]);
 };
 
-Appodeal.canShow = function (adType, callback) {
-  exec(callback, null, SERVICE, "canShow", [adType]);
+Appodeal.canShow = function (adType, placement, callback) {
+  exec(callback, null, SERVICE, "canShow", [adType, placement]);
 };
 
-Appodeal.canShowWithPlacement = function (adType, placement, callback) {
-  exec(callback, null, SERVICE, "canShowWithPlacement", [adType, placement]);
-};
-
-Appodeal.getRewardParameters = function (callback) {
-  exec(callback, null, SERVICE, "getRewardParameters", []);
-};
-
-Appodeal.getRewardParametersForPlacement = function (placement, callback) {
-  exec(callback, null, SERVICE, "getRewardParametersForPlacement", [placement]);
+Appodeal.getRewardParameters = function (placement, callback) {
+  exec(callback, null, SERVICE, "getRewardParameters", [placement]);
 };
 
 Appodeal.setExtraData = function (name, value) {
@@ -172,14 +152,6 @@ Appodeal.setExtraData = function (name, value) {
 
 Appodeal.getPredictedEcpm = function (adType, callback) {
   exec(callback, null, SERVICE, "getPredictedEcpm", [adType]);
-};
-
-Appodeal.setAge = function (age) {
-  exec(null, null, SERVICE, "setAge", [age]);
-};
-
-Appodeal.setGender = function (gender) {
-  exec(null, null, SERVICE, "setGender", [gender]);
 };
 
 Appodeal.setUserId = function (userid) {
@@ -209,23 +181,3 @@ Appodeal.setRewardedVideoCallbacks = function (callback) {
 Appodeal.setBannerCallbacks = function (callback) {
   exec(callback, null, SERVICE, "setBannerCallbacks", []);
 };
-
-Appodeal.setNativeCallbacks = function (callback) {
-  exec(callback, null, SERVICE, "setNativeCallbacks", [])
-};
-
-Appodeal.getNativeAds = function (callback) {
-  exec(callback, null, SERVICE, "getNativeAds", [])
-}
-
-Appodeal.setNativeAdPosition = function (x, y, w, h, tabH, callback) {
-  exec(callback, null, SERVICE, "setNativeAdPosition", [x, y, w, h, tabH])
-}
-
-Appodeal.hideNativeAd = function (callback) {
-  exec(callback, null, SERVICE, "hideNativeAd", [])
-}
-
-Appodeal.revealHiddenNativeAd = function (callback) {
-  exec(callback, null, SERVICE, "revealHiddenNativeAd", [])
-}
