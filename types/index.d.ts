@@ -13,7 +13,6 @@ declare class Appodeal {
   initialize: (appKey: any, adTypes: any, callback: successFunction) => void
   manageConsent: (appKey: any, adTypes: any, hasConsent: any, callback: successFunction) => void
   show: (adType: any, placement: string, callback: successFunction) => void
-  showBannerView: (xAxis: any, yAxis: any, placement: string) => void
   isLoaded: (adType: any, callback: successFunction) => void
   cache: (adType: any) => void
   hide: (adType: any) => void
@@ -29,20 +28,15 @@ declare class Appodeal {
   setTesting: (testing: boolean) => void
   setLogLevel: (loglevel: any) => void
   setChildDirectedTreatment: (value: any) => void
-  setTriggerOnLoadedOnPrecache: (set: any) => void
   disableNetwork: (network: any, adType: any) => void
-  disableNetworkType: (network: any, adType: any) => void
   disableLocationPermissionCheck: () => void
   disableWriteExternalStoragePermissionCheck: () => void
   muteVideosIfCallsMuted: (value: any) => void
   showTestScreen: (value: any) => void
   getVersion: (callback: successFunction) => void
-  getPluginVersion: () => string
   isInitialized: (adTypes: any, callback: successFunction) => void
   canShow: (adType: any, callback: successFunction) => void
-  canShowWithPlacement: (adType: any, placement: string, callback: successFunction) => void
   getRewardParameters: (callback: successFunction) => void
-  getRewardParametersForPlacement: (placement: string, callback: successFunction) => void
   setExtraData: (name: any, value: any) => void
   getPredictedEcpm: (adType: any, callback: successFunction) => void
   setAge: (age: number) => void
@@ -54,9 +48,4 @@ declare class Appodeal {
   setNonSkippableVideoCallbacks: (callbacks: any) => void
   setRewardedVideoCallbacks: (callbacks: any) => void
   setBannerCallbacks: (callbacks: any) => void
-  setNativeCallbacks: (callback: successFunction) => void
-  getNativeAds: (callback: successFunction) => void
-  setNativeAdPosition: (x: any, y: any, w: any, h: any, tabH: any, callback: successFunction) => void
-  hideNativeAd: (callback: successFunction) => void
-  revealHiddenNativeAd: (callback: successFunction) => void
 }
