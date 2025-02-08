@@ -345,10 +345,8 @@ public class CDVAppodeal extends CordovaPlugin {
 
             if (isBanner) {
                 res = showBanner(adType, placement);
-            } else if (adType == Appodeal.NATIVE) {
-                //res = showNativeAd();
             } else {
-//                res = Appodeal.show(cordova.getActivity(), adType);
+                res = Appodeal.show(cordova.getActivity(), adType);
             }
 
             if (res) callback.success();
