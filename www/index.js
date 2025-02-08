@@ -147,8 +147,19 @@ Appodeal.getRewardParameters = function (placement, callback) {
 };
 
 Appodeal.setExtraData = function (name, value) {
-  exec(null, null, SERVICE, "setExtraData", [name, value]);
-};
+  let type = typeof value;
+  let method;
+  if (type === "number")
+    method = Number.isInteger(value) ? "setCustomIntegerRule" : "setCustomDoubleRule";
+  else if (type === "boolean")
+    method = "setCustomBooleanRule";
+  else {
+    method = "setCustomStringRule";
+    value = `${value}`;
+  }
+
+  exec(null, null, SERVICE, method, [name, value]);
+}
 
 Appodeal.getPredictedEcpm = function (adType, callback) {
   exec(callback, null, SERVICE, "getPredictedEcpm", [adType]);

@@ -88,7 +88,6 @@ public class CDVAppodeal extends CordovaPlugin {
     private static final String ACTION_SET_CUSTOM_DOUBLE_RULE = "setCustomDoubleRule";
     private static final String ACTION_SET_CUSTOM_STRING_RULE = "setCustomStringRule";
     private static final String ACTION_GET_REWARD_PARAMETERS = "getRewardParameters";
-    private static final String ACTION_SET_EXTRA_DATA = "setExtraData";
     private static final String ACTION_GET_PREDICTED_ECPM = "getPredictedEcpm";
 
     private static final String ACTION_SET_USER_ID = "setUserId";
@@ -263,13 +262,6 @@ public class CDVAppodeal extends CordovaPlugin {
         }
 
         if (action.equals(ACTION_SET_CUSTOM_STRING_RULE)) {
-            final String name = args.getString(0);
-            final String value = args.getString(1);
-            runOnUiThread(() -> Appodeal.setExtraData(name, value));
-            return true;
-        }
-
-        if (action.equals(ACTION_SET_EXTRA_DATA)) {
             final String name = args.getString(0);
             final String value = args.getString(1);
             runOnUiThread(() -> Appodeal.setExtraData(name, value));
