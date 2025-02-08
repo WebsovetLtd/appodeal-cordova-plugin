@@ -38,6 +38,7 @@ Appodeal.initialize = function (appKey, adTypes, callback) {
 };
 
 Appodeal.show = function (adType, placement, callback) {
+  if (!placement) placement = null;
   exec(callback, null, SERVICE, "show", [adType, placement]);
 };
 
@@ -139,10 +140,12 @@ Appodeal.isInitialized = function (adTypes, callback) {
 };
 
 Appodeal.canShow = function (adType, placement, callback) {
+  if (!placement) placement = null;
   exec(callback, null, SERVICE, "canShow", [adType, placement]);
 };
 
 Appodeal.getRewardParameters = function (placement, callback) {
+  if (!placement) placement = null;
   exec(callback, null, SERVICE, "getRewardParameters", [placement]);
 };
 
@@ -175,10 +178,6 @@ Appodeal.trackInAppPurchase = function (amount, currency) {
 
 Appodeal.setInterstitialCallbacks = function (callback) {
   exec(callback, null, SERVICE, "setInterstitialCallbacks", [])
-};
-
-Appodeal.setNonSkippableVideoCallbacks = function (callback) {
-  exec(callback, null, SERVICE, "setNonSkippableVideoCallbacks", []);
 };
 
 Appodeal.setRewardedVideoCallbacks = function (callback) {

@@ -59,13 +59,15 @@
 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Appodeal">
-                <param name="android-package"
-                    value="com.appodeal.plugin.CDVAppodeal" />
+                <param name="android-package" value="com.appodeal.plugin.CDVAppodeal"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/CDVAppodeal.java"
-            target-dir="src/com/appodeal/plugin" />
+        <source-file src="src/android/CDVAppodeal.java" target-dir="src/com/appodeal/plugin"/>
+        <source-file src="src/android/CallbackHandler.java" target-dir="src/com/appodeal/plugin"/>
+        <source-file src="src/android/BannerCallbacksHandler.java" target-dir="src/com/appodeal/plugin"/>
+        <source-file src="src/android/InterstitialCallbacksHandler.java" target-dir="src/com/appodeal/plugin"/>
+        <source-file src="src/android/RewardedVideoCallbacksHandler.java" target-dir="src/com/appodeal/plugin"/>
     </platform>
 
     <platform name="ios">

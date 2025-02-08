@@ -45,7 +45,6 @@ declare class Appodeal {
   trackInAppPurchase: (amount: any, currency: any) => void
   hasStatusBarPlugin: (value: any) => void
   setInterstitialCallbacks: (callback: successFunction) => void
-  setNonSkippableVideoCallbacks: (callbacks: any) => void
   setRewardedVideoCallbacks: (callbacks: any) => void
   setBannerCallbacks: (callbacks: any) => void
 }
