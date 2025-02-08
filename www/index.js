@@ -34,101 +34,221 @@ Appodeal.Gender = {
 Appodeal.pluginVersion = '3.2.0';
 
 Appodeal.initialize = function (appKey, adTypes, callback) {
-  exec(callback, null, SERVICE, "initialize", [appKey, adTypes]);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "initialize", [appKey, adTypes]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.show = function (adType, placement, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
   if (!placement) placement = null;
-  exec(callback, null, SERVICE, "show", [adType, placement]);
+  exec(resolve, reject, SERVICE, "show", [adType, placement]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.isLoaded = function (adType, callback) {
-  exec(callback, null, SERVICE, "isLoaded", [adType]);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "isLoaded", [adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.cache = function (adType) {
-  exec(null, null, SERVICE, "cache", [adType]);
+Appodeal.cache = function (adType, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "cache", [adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.hide = function (adType) {
-  exec(null, null, SERVICE, "hide", [adType]);
+Appodeal.hide = function (adType, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "hide", [adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.destroy = function (adType) {
-  exec(null, null, SERVICE, "destroy", [adType]);
+Appodeal.destroy = function (adType, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "destroy", [adType]);
+
+  if (!callback) return promise;
 }
 
-Appodeal.onResume = function (adType) {
-  exec(null, null, SERVICE, "onResume", [adType]);
+Appodeal.onResume = function (adType, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "onResume", [adType]);
+
+  if (!callback) return promise;
 }
 
-Appodeal.setAutoCache = function (adTypes, autoCache) {
-  exec(null, null, SERVICE, "setAutoCache", [adTypes, autoCache]);
+Appodeal.setAutoCache = function (adTypes, autoCache, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setAutoCache", [adTypes, autoCache]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.isPrecache = function (adType, callback) {
-  exec(callback, null, SERVICE, "isPrecache", [adType]);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "isPrecache", [adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setBannerAnimation = function (value) {
-  exec(null, null, SERVICE, "setBannerAnimation", [value]);
+Appodeal.setBannerAnimation = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setBannerAnimation", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setSmartBanners = function (value) {
-  exec(null, null, SERVICE, "setSmartBanners", [value]);
+Appodeal.setSmartBanners = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setSmartBanners", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.set728x90Banners = function (value) {
-  exec(null, null, SERVICE, "set728x90Banners", [value]);
+Appodeal.set728x90Banners = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "set728x90Banners", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setBannerOverLap = function (value) {
-  exec(null, null, SERVICE, "setBannerOverLap", [value]);
+Appodeal.setBannerOverLap = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setBannerOverLap", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.refreshWebViewForBanner = function () {
-  exec(null, null, SERVICE, "refreshWebViewForBanner", []);
+Appodeal.refreshWebViewForBanner = function (callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "refreshWebViewForBanner", []);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setTesting = function (testing) {
-  exec(null, null, SERVICE, "setTesting", [testing]);
+Appodeal.setTesting = function (testing, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setTesting", [testing]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setLogLevel = function (loglevel) {
-  exec(null, null, SERVICE, "setLogLevel", [loglevel]);
+Appodeal.setLogLevel = function (loglevel, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setLogLevel", [loglevel]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setChildDirectedTreatment = function (value) {
-  exec(null, null, SERVICE, "setChildDirectedTreatment", [value]);
+Appodeal.setChildDirectedTreatment = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setChildDirectedTreatment", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setTriggerOnLoadedOnPrecache = function (set) {
-  exec(null, null, SERVICE, "setOnLoadedTriggerBoth", [set]);
+Appodeal.setTriggerOnLoadedOnPrecache = function (set, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setOnLoadedTriggerBoth", [set]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.disableNetwork = function (network, adType) {
+Appodeal.disableNetwork = function (network, adType, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
   adType = Number(adType) || 0;
-  exec(null, null, SERVICE, "disableNetwork", [network, adType]);
+  exec(resolve, reject, SERVICE, "disableNetwork", [network, adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.disableLocationPermissionCheck = function () {
-  exec(null, null, SERVICE, "disableLocationPermissionCheck", []);
+Appodeal.disableLocationPermissionCheck = function (callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "disableLocationPermissionCheck", []);
+
+  if (!callback) return promise;
 };
 
-Appodeal.disableWriteExternalStoragePermissionCheck = function () {
-  exec(null, null, SERVICE, "disableWriteExternalStoragePermissionCheck", []);
+Appodeal.disableWriteExternalStoragePermissionCheck = function (callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "disableWriteExternalStoragePermissionCheck", []);
+
+  if (!callback) return promise;
 };
 
-Appodeal.muteVideosIfCallsMuted = function (value) {
-  exec(null, null, SERVICE, "muteVideosIfCallsMuted", [value]);
+Appodeal.muteVideosIfCallsMuted = function (value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "muteVideosIfCallsMuted", [value]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.showTestScreen = function () {
-  exec(null, null, SERVICE, "showTestScreen", []);
+Appodeal.showTestScreen = function (callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "showTestScreen", []);
+
+  if (!callback) return promise;
 };
 
 Appodeal.getVersion = function (callback) {
-  exec(callback, null, SERVICE, "getVersion", []);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "getVersion", []);
+
+  if (!callback) return promise;
 };
 
 Appodeal.getPluginVersion = function () {
@@ -136,20 +256,38 @@ Appodeal.getPluginVersion = function () {
 };
 
 Appodeal.isInitialized = function (adTypes, callback) {
-  exec(callback, null, SERVICE, "isInitialized", [adTypes]);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "isInitialized", [adTypes]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.canShow = function (adType, placement, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
   if (!placement) placement = null;
-  exec(callback, null, SERVICE, "canShow", [adType, placement]);
+  exec(resolve, reject, SERVICE, "canShow", [adType, placement]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.getRewardParameters = function (placement, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
   if (!placement) placement = null;
-  exec(callback, null, SERVICE, "getRewardParameters", [placement]);
+  exec(resolve, reject, SERVICE, "getRewardParameters", [placement]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setExtraData = function (name, value) {
+Appodeal.setExtraData = function (name, value, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
   let type = typeof value;
   let method;
   if (type === "number")
@@ -161,19 +299,36 @@ Appodeal.setExtraData = function (name, value) {
     value = `${value}`;
   }
 
-  exec(null, null, SERVICE, method, [name, value]);
+  exec(resolve, reject, SERVICE, method, [name, value]);
+
+  if (!callback) return promise;
 }
 
 Appodeal.getPredictedEcpm = function (adType, callback) {
-  exec(callback, null, SERVICE, "getPredictedEcpm", [adType]);
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "getPredictedEcpm", [adType]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.setUserId = function (userid) {
-  exec(null, null, SERVICE, "setUserId", [userid]);
+Appodeal.setUserId = function (userid, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "setUserId", [userid]);
+
+  if (!callback) return promise;
 };
 
-Appodeal.trackInAppPurchase = function (amount, currency) {
-  exec(null, null, SERVICE, "trackInAppPurchase", [amount, currency]);
+Appodeal.trackInAppPurchase = function (amount, currency, callback) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(resolve, reject, SERVICE, "trackInAppPurchase", [amount, currency]);
+
+  if (!callback) return promise;
 };
 
 Appodeal.setInterstitialCallbacks = function (callback) {
