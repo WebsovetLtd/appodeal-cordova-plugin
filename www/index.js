@@ -162,10 +162,6 @@ Appodeal.trackInAppPurchase = function (amount, currency) {
   exec(null, null, SERVICE, "trackInAppPurchase", [amount, currency]);
 };
 
-Appodeal.hasStatusBarPlugin = function (value) {
-  exec(null, null, SERVICE, "hasStatusBarPlugin", [value]);
-};
-
 Appodeal.setInterstitialCallbacks = function (callback) {
   exec(callback, null, SERVICE, "setInterstitialCallbacks", [])
 };
