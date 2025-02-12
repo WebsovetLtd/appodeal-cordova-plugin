@@ -31,6 +31,16 @@ Appodeal.Gender = {
   FEMALE: 2
 };
 
+Appodeal.EVENT_INIT = "onInit";
+Appodeal.EVENT_LOADED = "onLoaded";
+Appodeal.EVENT_FAILED = "onFailedToLoad";
+Appodeal.EVENT_CLICKED = "onClick";
+Appodeal.EVENT_SHOWN = "onShown";
+Appodeal.EVENT_CLOSED = "onClosed";
+Appodeal.EVENT_FINISHED = "onFinished";
+Appodeal.EVENT_EXPIRED = "onExpired";
+Appodeal.EVENT_SHOW_FAILED = "onInterstitialShowFailed";
+
 Appodeal.pluginVersion = '3.2.0';
 
 Appodeal.initialize = function (appKey, adTypes, callback) {
