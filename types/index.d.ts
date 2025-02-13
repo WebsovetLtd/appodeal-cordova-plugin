@@ -52,6 +52,16 @@ declare class Appodeal {
 
 	Gender: { OTHER: 0; MALE: 1; FEMALE: 2 }
 
+	EVENT_INIT: "onInit"
+	EVENT_LOADED: "onLoaded"
+	EVENT_LOAD_FAILED: "onLoadFailed"
+	EVENT_CLICKED: "onClick"
+	EVENT_SHOWN: "onShown"
+	EVENT_CLOSED: "onClosed"
+	EVENT_FINISHED: "onFinished"
+	EVENT_EXPIRED: "onExpired"
+	EVENT_SHOW_FAILED: "onShowFailed"
+
 	initialize: (appKey: string, adTypes: number, callback?: Func<void>) => Promise<void>
 	show: (adType: AdType, placement: string, callback?: Func<void>) => Promise<void>
 	isLoaded: (adType: AdType, callback?: Func<boolean>) => Promise<boolean>
