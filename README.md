@@ -43,10 +43,10 @@ Appodeal.setInterstitialCallbacks(function (container) {
 });
 Appodeal.setRewardedVideoCallbacks(function (container) {
   console.log('rewarded video callback event triggered:', container.event);
-  if (container.event === 'onClosed') {
+  if (container.event === Appodeal.EVENT_CLOSED) {
     // reward is identified here for iOS
     console.log('rewarded video closed, was fully watched?', container.wasFullyWatched);
-  } else if (container.event === 'onFinished') {
+  } else if (container.event === Appodeal.EVENT_FINISHED) {
     // reward is identified here for android
     console.log('rewarded video finished and fully watched.');
   }
