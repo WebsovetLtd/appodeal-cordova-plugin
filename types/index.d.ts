@@ -32,6 +32,26 @@ type RewardParams = {
 }
 
 declare class Appodeal {
+	pluginVersion: string
+
+	INTERSTITIAL: 3
+	BANNER: 4
+	BANNER_BOTTOM: 8
+	BANNER_TOP: 16
+	BANNER_LEFT: 1024
+	BANNER_RIGHT: 2048
+	REWARDED_VIDEO: 128
+	MREC: 256
+
+	BANNER_X_SMART: 0
+	BANNER_X_CENTER: 1
+	BANNER_X_LEFT: 2
+	BANNER_X_RIGHT: 3
+
+	LogLevel: { NONE: 0; DEBUG: 1; VERBOSE: 2 }
+
+	Gender: { OTHER: 0; MALE: 1; FEMALE: 2 }
+
 	initialize: (appKey: string, adTypes: number, callback?: Func<void>) => Promise<void>
 	show: (adType: AdType, placement: string, callback?: Func<void>) => Promise<void>
 	isLoaded: (adType: AdType, callback?: Func<boolean>) => Promise<boolean>
