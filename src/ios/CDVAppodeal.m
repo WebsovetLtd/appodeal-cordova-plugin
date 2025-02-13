@@ -36,7 +36,7 @@ static UIView *nativeAdView;
 static NSString *CALLBACK_EVENT = @"event";
 static NSString *CALLBACK_INIT = @"onInit";
 static NSString *CALLBACK_LOADED = @"onLoaded";
-static NSString *CALLBACK_FAILED = @"onFailedToLoad";
+static NSString *CALLBACK_LOAD_FAILED = @"onLoadFailed";
 static NSString *CALLBACK_CLICKED = @"onClick";
 static NSString *CALLBACK_SHOWN = @"onShown";
 static NSString *CALLBACK_CLOSED = @"onClosed";
@@ -768,7 +768,7 @@ static int nativeShowStyleForType(int adTypes) {
 }
 
 - (void)bannerView:(APDBannerView *)bannerView didFailToLoadAdWithError:(NSError *)error {
-    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_FAILED};
+    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_LOAD_FAILED};
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:vals];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.bannerCallbackID];
@@ -797,7 +797,7 @@ static int nativeShowStyleForType(int adTypes) {
 }
 
 - (void)bannerDidFailToLoadAd {
-    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_FAILED};
+    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_LOAD_FAILED};
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:vals];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.bannerCallbackID];
@@ -833,7 +833,7 @@ static int nativeShowStyleForType(int adTypes) {
 }
 
 - (void)interstitialDidFailToLoadAd {
-    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_FAILED};
+    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_LOAD_FAILED};
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:vals];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.interstitialCallbackID];
@@ -869,7 +869,7 @@ static int nativeShowStyleForType(int adTypes) {
 }
 
 - (void)rewardedVideoDidFailToLoadAd {
-    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_FAILED};
+    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_LOAD_FAILED};
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:vals];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.rewardedCallbackID];
@@ -914,7 +914,7 @@ static int nativeShowStyleForType(int adTypes) {
 }
 
 - (void)nonSkippableVideoDidFailToLoadAd {
-    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_FAILED};
+    NSDictionary *vals = @{CALLBACK_EVENT: CALLBACK_LOAD_FAILED};
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:vals];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.rewardedCallbackID];

@@ -24,7 +24,7 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
 
     @Override
     public void onRewardedVideoFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_FAILED));
+        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
     }
 
     @Override

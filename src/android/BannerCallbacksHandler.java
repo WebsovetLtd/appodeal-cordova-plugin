@@ -24,7 +24,7 @@ public class BannerCallbacksHandler extends CallbackHandler implements BannerCal
 
     @Override
     public void onBannerFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_FAILED));
+        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
     }
 
     @Override

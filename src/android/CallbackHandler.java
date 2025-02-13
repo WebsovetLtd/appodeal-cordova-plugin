@@ -8,13 +8,13 @@ import org.json.JSONObject;
 public abstract class CallbackHandler {
     static final String CALLBACK_INIT = "onInit";
     static final String CALLBACK_LOADED = "onLoaded";
-    static final String CALLBACK_FAILED = "onFailedToLoad";
+    static final String CALLBACK_LOAD_FAILED = "onLoadFailed";
     static final String CALLBACK_CLICKED = "onClick";
     static final String CALLBACK_SHOWN = "onShown";
     static final String CALLBACK_CLOSED = "onClosed";
     static final String CALLBACK_FINISHED = "onFinished";
     static final String CALLBACK_EXPIRED = "onExpired";
-    static final String CALLBACK_SHOW_FAILED = "onInterstitialShowFailed";
+    static final String CALLBACK_SHOW_FAILED = "onShowFailed";
 
     protected final CDVAppodeal plugin;
 
