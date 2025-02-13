@@ -24,7 +24,7 @@ public class InterstitialCallbacksHandler extends CallbackHandler implements Int
 
     @Override
     public void onInterstitialFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_FAILED));
+        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
     }
 
     @Override

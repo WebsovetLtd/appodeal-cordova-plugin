@@ -33,13 +33,13 @@ Appodeal.Gender = {
 
 Appodeal.EVENT_INIT = "onInit";
 Appodeal.EVENT_LOADED = "onLoaded";
-Appodeal.EVENT_FAILED = "onFailedToLoad";
+Appodeal.EVENT_LOAD_FAILED = "onLoadFailed";
 Appodeal.EVENT_CLICKED = "onClick";
 Appodeal.EVENT_SHOWN = "onShown";
 Appodeal.EVENT_CLOSED = "onClosed";
 Appodeal.EVENT_FINISHED = "onFinished";
 Appodeal.EVENT_EXPIRED = "onExpired";
-Appodeal.EVENT_SHOW_FAILED = "onInterstitialShowFailed";
+Appodeal.EVENT_SHOW_FAILED = "onShowFailed";
 
 Appodeal.pluginVersion = '3.2.0';
 
