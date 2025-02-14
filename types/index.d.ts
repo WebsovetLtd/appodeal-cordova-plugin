@@ -86,7 +86,7 @@ declare class Appodeal {
 	setExtraData: (name: string, value: number, callback?: Func<void>) => Promise<void>
 	getPredictedEcpm: (adType: AdType, callback?: Func<number>) => Promise<number>
 	setUserId: (userId: string, callback?: Func<void>) => Promise<void>
-	setRewardedVideoCallbacks: (callbacks: EventFunc<RewardedEventName>) => void
-	setInterstitialCallbacks: (callbacks: EventFunc<InterstitialEventName>) => void
-	setBannerCallbacks: (callbacks: EventFunc<BannerEventName>) => void
+	setRewardedVideoCallbacks: (eventCallback: EventFunc<RewardedEventName>, callback?: Func<void>) => Promise<void>
+	setInterstitialCallbacks: (eventCallback: EventFunc<InterstitialEventName>, callback?: Func<void>) => Promise<void>
+	setBannerCallbacks: (eventCallback: EventFunc<BannerEventName>, callback?: Func<void>) => Promise<void>
 }

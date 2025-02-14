@@ -341,14 +341,37 @@ Appodeal.trackInAppPurchase = function (amount, currency, callback) {
   if (!callback) return promise;
 };
 
-Appodeal.setInterstitialCallbacks = function (callback) {
-  exec(callback, null, SERVICE, "setInterstitialCallbacks", [])
+Appodeal.setInterstitialCallbacks = function (eventCallback, callback) {
+  let {promise, resolve, reject} = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(cbOnInitDecorator(eventCallback, resolve), null, SERVICE, "setInterstitialCallbacks", [])
+
+  if (!callback) return promise;
 };
 
-Appodeal.setRewardedVideoCallbacks = function (callback) {
-  exec(callback, null, SERVICE, "setRewardedVideoCallbacks", []);
+Appodeal.setRewardedVideoCallbacks = function (eventCallback, callback) {
+  let {promise, resolve, reject} = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(cbOnInitDecorator(eventCallback, resolve), null, SERVICE, "setRewardedVideoCallbacks", [])
+
+  if (!callback) return promise;
 };
 
-Appodeal.setBannerCallbacks = function (callback) {
-  exec(callback, null, SERVICE, "setBannerCallbacks", []);
+Appodeal.setBannerCallbacks = function (eventCallback, callback) {
+  let {promise, resolve, reject} = Promise.withResolvers();
+  resolve = callback || resolve;
+
+  exec(cbOnInitDecorator(eventCallback, resolve), null, SERVICE, "setBannerCallbacks", [])
+
+  if (!callback) return promise;
 };
+
+function cbOnInitDecorator(callback, onInitCb) {
+  return (result) => {
+    if (result.event === Appodeal.EVENT_INIT)
+      onInitCb();
+    callback(result);
+  }
+}
