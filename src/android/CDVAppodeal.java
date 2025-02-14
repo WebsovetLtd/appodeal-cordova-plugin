@@ -1,40 +1,14 @@
 package com.appodeal.plugin;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.graphics.Color;
-import android.provider.Settings;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.RatingBar;
-import android.view.ViewGroup;
-import android.view.Gravity;
-import android.widget.TextView;
-
 import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.BannerCallbacks;
-//import com.appodeal.ads.Native;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
-import com.appodeal.ads.InterstitialCallbacks;
-import com.appodeal.ads.RewardedVideoCallbacks;
-//import com.appodeal.ads.NonSkippableVideoCallbacks;
-import com.appodeal.ads.UserSettings;
-import com.appodeal.ads.BannerView;
-//import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
-import com.appodeal.ads.initializing.ApdInitializationCallback;
-import com.appodeal.ads.initializing.ApdInitializationError;
 import com.appodeal.ads.rewarded.Reward;
 import com.appodeal.ads.utils.Log;
-import com.appodeal.ads.NativeMediaViewContentType;
 
 import com.explorestack.consent.Consent;
 import com.explorestack.consent.ConsentForm;
@@ -44,12 +18,6 @@ import com.explorestack.consent.ConsentManager;
 import com.explorestack.consent.exception.ConsentManagerException;
 
 import org.json.JSONObject;
-
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-
-import androidx.annotation.Nullable;
 
 public class CDVAppodeal extends CordovaPlugin {
 
@@ -214,27 +182,20 @@ public class CDVAppodeal extends CordovaPlugin {
     }
 
     private void actionCanShow(JSONArray args, CallbackContext callback) throws JSONException {
-        int adType = args.getInt(0);
+        final int adType = args.getInt(0);
+        final String placement = args.optString(1, null);
 
         boolean result;
-        try {
-            String placement = args.getString(1);
-            result = Appodeal.canShow(adType, placement);
-        } catch (JSONException e) {
+        if (placement == null)
             result = Appodeal.canShow(adType);
-        }
+        else
+            result = Appodeal.canShow(adType, placement);
 
         sendPluginResOK(callback, result);
     }
 
     private void actionGetRewardParameters(JSONArray args, CallbackContext callback) throws JSONException {
-        String placement;
-
-        try {
-            placement = args.getString(0);
-        } catch (JSONException e) {
-            placement = null;
-        }
+        final String placement = args.optString(0, null);
 
         Reward reward;
         if (placement == null)
