@@ -10,21 +10,11 @@ import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.rewarded.Reward;
 import com.appodeal.ads.utils.Log;
 
-import com.explorestack.consent.Consent;
-import com.explorestack.consent.ConsentForm;
-import com.explorestack.consent.ConsentFormListener;
-import com.explorestack.consent.ConsentInfoUpdateListener;
-import com.explorestack.consent.ConsentManager;
-import com.explorestack.consent.exception.ConsentManagerException;
-
 import org.json.JSONObject;
 
 public class CDVAppodeal extends CordovaPlugin {
 
     private static final String TAG = "com.appodeal.plugin";
-
-    private static ConsentForm consentForm;
-
 
     private boolean isInitialized = false;
 
