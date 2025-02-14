@@ -20,9 +20,9 @@ Appodeal.BANNER_X_LEFT = 2;
 Appodeal.BANNER_X_RIGHT = 3;
 
 Appodeal.LogLevel = {
-  NONE: 0,
-  DEBUG: 1,
-  VERBOSE: 2
+  NONE: "none",
+  DEBUG: "debug",
+  VERBOSE: "verbose"
 };
 
 Appodeal.Gender = {

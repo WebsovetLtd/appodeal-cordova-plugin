@@ -24,7 +24,7 @@ type EventFunc<Name extends EventName> = (
 
 /* see www/index.js. */
 type AdType = 3 | 4 | 8 | 16 | 128 | 256 | 1024 | 2048
-type LogLevel = 0 | 1 | 2
+type LogLevel = "none" | "debug" | "verbose"
 
 type RewardParams = {
 	amount: number
