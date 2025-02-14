@@ -41,7 +41,7 @@ Appodeal.EVENT_FINISHED = "onFinished";
 Appodeal.EVENT_EXPIRED = "onExpired";
 Appodeal.EVENT_SHOW_FAILED = "onShowFailed";
 
-Appodeal.pluginVersion = '3.2.0';
+Appodeal.pluginVersion = '3.3.0';
 
 Appodeal.initialize = function (appKey, adTypes, callback) {
   let { promise, resolve, reject } = Promise.withResolvers();
