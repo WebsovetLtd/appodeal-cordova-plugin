@@ -81,10 +81,10 @@ public class CDVAppodeal extends CordovaPlugin {
             return actionShow(args, callback);
 
         if (action == Action.hide)
-            return actionHide(args, callback);
+            Appodeal.hide(cordova.getActivity(), args.getInt(0));
 
         if (action == Action.showTestScreen)
-            runOnUiThread(() -> Appodeal.startTestActivity(cordova.getActivity()));
+            Appodeal.startTestActivity(cordova.getActivity());
 
         if (action == Action.setTesting)
             Appodeal.setTesting(args.getBoolean(0));
@@ -179,13 +179,11 @@ public class CDVAppodeal extends CordovaPlugin {
         final String appKey = args.getString(0);
         final int adType = args.getInt(1);
 
-        runOnThreadPool(() -> {
-            log("Initializing SDK");
-            Appodeal.initialize(cordova.getActivity(), appKey, adType, errors -> {
-                isInitialized = true;
-                log("SDK initialized");
-                sendPluginResOK(callback);
-            });
+        log("Initializing SDK");
+        Appodeal.initialize(cordova.getActivity(), appKey, adType, errors -> {
+            isInitialized = true;
+            log("SDK initialized");
+            sendPluginResOK(callback);
         });
 
         return true;
@@ -202,15 +200,6 @@ public class CDVAppodeal extends CordovaPlugin {
             res = Appodeal.show(cordova.getActivity(), adType, placement);
 
         sendPluginResOK(callback, res);
-        return true;
-    }
-
-    private boolean actionHide(JSONArray args, CallbackContext callback) throws JSONException {
-        final int adType = args.getInt(0);
-        runOnUiThread(() -> {
-            Appodeal.hide(cordova.getActivity(), adType);
-            sendPluginResOK(callback);
-        });
         return true;
     }
 
@@ -264,14 +253,6 @@ public class CDVAppodeal extends CordovaPlugin {
         if (Appodeal.getLogLevel().equals(Log.LogLevel.debug) || Appodeal.getLogLevel().equals(Log.LogLevel.verbose)) {
             android.util.Log.d(TAG, message);
         }
-    }
-
-    void runOnThreadPool(Runnable action) {
-        cordova.getThreadPool().execute(action);
-    }
-
-    void runOnUiThread(Runnable action) {
-        cordova.getActivity().runOnUiThread(action);
     }
 
     private void sendPluginResOK(CallbackContext callback) {

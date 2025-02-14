@@ -14,43 +14,41 @@ public class InterstitialCallbacksHandler extends CallbackHandler implements Int
 
     @Override
     public void onInterstitialClicked() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_CLICKED));
+        sendEventResult(CALLBACK_CLICKED);
     }
 
     @Override
     public void onInterstitialExpired() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_EXPIRED));
+        sendEventResult(CALLBACK_EXPIRED);
     }
 
     @Override
     public void onInterstitialFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
+        sendEventResult(CALLBACK_LOAD_FAILED);
     }
 
     @Override
     public void onInterstitialLoaded(final boolean isPrecache) {
-        plugin.runOnThreadPool(() -> {
-            try {
-                JSONObject vals = new JSONObject();
-                vals.put("isPrecache", isPrecache);
-                sendEventResult(CALLBACK_LOADED, vals);
-            } catch (JSONException ignored) {
-            }
-        });
+        try {
+            JSONObject vals = new JSONObject();
+            vals.put("isPrecache", isPrecache);
+            sendEventResult(CALLBACK_LOADED, vals);
+        } catch (JSONException ignored) {
+        }
     }
 
     @Override
     public void onInterstitialShown() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOWN));
+        sendEventResult(CALLBACK_SHOWN);
     }
 
     @Override
     public void onInterstitialShowFailed() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOW_FAILED));
+        sendEventResult(CALLBACK_SHOW_FAILED);
     }
 
     @Override
     public void onInterstitialClosed() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_CLOSED));
+        sendEventResult(CALLBACK_CLOSED);
     }
 }

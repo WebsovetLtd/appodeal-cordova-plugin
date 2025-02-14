@@ -14,63 +14,57 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
 
     @Override
     public void onRewardedVideoClicked() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_CLICKED));
+        sendEventResult(CALLBACK_CLICKED);
     }
 
     @Override
     public void onRewardedVideoExpired() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_EXPIRED));
+        sendEventResult(CALLBACK_EXPIRED);
     }
 
     @Override
     public void onRewardedVideoFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
+        sendEventResult(CALLBACK_LOAD_FAILED);
     }
 
     @Override
     public void onRewardedVideoLoaded(final boolean isPrecache) {
-        plugin.runOnThreadPool(() -> {
-            try {
-                JSONObject vals = new JSONObject();
-                vals.put("isPrecache", isPrecache);
-                sendEventResult(CALLBACK_LOADED, vals);
-            } catch (JSONException ignored) {
-            }
-        });
+        try {
+            JSONObject vals = new JSONObject();
+            vals.put("isPrecache", isPrecache);
+            sendEventResult(CALLBACK_LOADED, vals);
+        } catch (JSONException ignored) {
+        }
     }
 
     @Override
     public void onRewardedVideoShown() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOWN));
+        sendEventResult(CALLBACK_SHOWN);
     }
 
     @Override
     public void onRewardedVideoShowFailed() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOW_FAILED));
+        sendEventResult(CALLBACK_SHOW_FAILED);
     }
 
     @Override
     public void onRewardedVideoClosed(boolean finished) {
-        plugin.runOnThreadPool(() -> {
-            try {
-                JSONObject vals = new JSONObject();
-                vals.put("finished", finished);
-                sendEventResult(CALLBACK_CLOSED, vals);
-            } catch (JSONException ignored) {
-            }
-        });
+        try {
+            JSONObject vals = new JSONObject();
+            vals.put("finished", finished);
+            sendEventResult(CALLBACK_CLOSED, vals);
+        } catch (JSONException ignored) {
+        }
     }
 
     @Override
     public void onRewardedVideoFinished(double amount, String currency) {
-        plugin.runOnThreadPool(() -> {
-            try {
-                JSONObject vals = new JSONObject();
-                vals.put("amount", amount);
-                vals.put("currency", currency);
-                sendEventResult(CALLBACK_FINISHED, vals);
-            } catch (JSONException ignored) {
-            }
-        });
+        try {
+            JSONObject vals = new JSONObject();
+            vals.put("amount", amount);
+            vals.put("currency", currency);
+            sendEventResult(CALLBACK_FINISHED, vals);
+        } catch (JSONException ignored) {
+        }
     }
 }

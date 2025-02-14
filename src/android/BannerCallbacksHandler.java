@@ -14,39 +14,37 @@ public class BannerCallbacksHandler extends CallbackHandler implements BannerCal
 
     @Override
     public void onBannerClicked() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_CLICKED));
+        sendEventResult(CALLBACK_CLICKED);
     }
 
     @Override
     public void onBannerExpired() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_EXPIRED));
+        sendEventResult(CALLBACK_EXPIRED);
     }
 
     @Override
     public void onBannerFailedToLoad() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_LOAD_FAILED));
+        sendEventResult(CALLBACK_LOAD_FAILED);
     }
 
     @Override
     public void onBannerLoaded(final int height, final boolean isPrecache) {
-        plugin.runOnThreadPool(() -> {
-            try {
-                JSONObject vals = new JSONObject();
-                vals.put("height", height);
-                vals.put("isPrecache", isPrecache);
-                sendEventResult(CALLBACK_LOADED, vals);
-            } catch (JSONException ignored) {
-            }
-        });
+        try {
+            JSONObject vals = new JSONObject();
+            vals.put("height", height);
+            vals.put("isPrecache", isPrecache);
+            sendEventResult(CALLBACK_LOADED, vals);
+        } catch (JSONException ignored) {
+        }
     }
 
     @Override
     public void onBannerShown() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOWN));
+        sendEventResult(CALLBACK_SHOWN);
     }
 
     @Override
     public void onBannerShowFailed() {
-        plugin.runOnThreadPool(() -> sendEventResult(CALLBACK_SHOW_FAILED));
+        sendEventResult(CALLBACK_SHOW_FAILED);
     }
 }

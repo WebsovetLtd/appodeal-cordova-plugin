@@ -24,7 +24,7 @@ public abstract class CallbackHandler {
         this.plugin = plugin;
         this.callback = callback;
 
-        plugin.runOnUiThread(() -> sendEventResult(CALLBACK_INIT));
+        sendEventResult(CALLBACK_INIT);
     }
 
     protected void sendEventResult(String eventName) {
