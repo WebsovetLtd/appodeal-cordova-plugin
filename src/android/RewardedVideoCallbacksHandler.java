@@ -14,17 +14,17 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
 
     @Override
     public void onRewardedVideoClicked() {
-        sendEventResult(CALLBACK_CLICKED);
+        sendEventResult(Event.onClick);
     }
 
     @Override
     public void onRewardedVideoExpired() {
-        sendEventResult(CALLBACK_EXPIRED);
+        sendEventResult(Event.onExpired);
     }
 
     @Override
     public void onRewardedVideoFailedToLoad() {
-        sendEventResult(CALLBACK_LOAD_FAILED);
+        sendEventResult(Event.onLoadFailed);
     }
 
     @Override
@@ -32,19 +32,19 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
         try {
             JSONObject vals = new JSONObject();
             vals.put("isPrecache", isPrecache);
-            sendEventResult(CALLBACK_LOADED, vals);
+            sendEventResult(Event.onLoaded, vals);
         } catch (JSONException ignored) {
         }
     }
 
     @Override
     public void onRewardedVideoShown() {
-        sendEventResult(CALLBACK_SHOWN);
+        sendEventResult(Event.onShown);
     }
 
     @Override
     public void onRewardedVideoShowFailed() {
-        sendEventResult(CALLBACK_SHOW_FAILED);
+        sendEventResult(Event.onShowFailed);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
         try {
             JSONObject vals = new JSONObject();
             vals.put("finished", finished);
-            sendEventResult(CALLBACK_CLOSED, vals);
+            sendEventResult(Event.onClosed, vals);
         } catch (JSONException ignored) {
         }
     }
@@ -63,7 +63,7 @@ public class RewardedVideoCallbacksHandler extends CallbackHandler implements Re
             JSONObject vals = new JSONObject();
             vals.put("amount", amount);
             vals.put("currency", currency);
-            sendEventResult(CALLBACK_FINISHED, vals);
+            sendEventResult(Event.onFinished, vals);
         } catch (JSONException ignored) {
         }
     }

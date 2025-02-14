@@ -14,17 +14,17 @@ public class InterstitialCallbacksHandler extends CallbackHandler implements Int
 
     @Override
     public void onInterstitialClicked() {
-        sendEventResult(CALLBACK_CLICKED);
+        sendEventResult(Event.onClick);
     }
 
     @Override
     public void onInterstitialExpired() {
-        sendEventResult(CALLBACK_EXPIRED);
+        sendEventResult(Event.onExpired);
     }
 
     @Override
     public void onInterstitialFailedToLoad() {
-        sendEventResult(CALLBACK_LOAD_FAILED);
+        sendEventResult(Event.onLoadFailed);
     }
 
     @Override
@@ -32,23 +32,23 @@ public class InterstitialCallbacksHandler extends CallbackHandler implements Int
         try {
             JSONObject vals = new JSONObject();
             vals.put("isPrecache", isPrecache);
-            sendEventResult(CALLBACK_LOADED, vals);
+            sendEventResult(Event.onLoaded, vals);
         } catch (JSONException ignored) {
         }
     }
 
     @Override
     public void onInterstitialShown() {
-        sendEventResult(CALLBACK_SHOWN);
+        sendEventResult(Event.onShown);
     }
 
     @Override
     public void onInterstitialShowFailed() {
-        sendEventResult(CALLBACK_SHOW_FAILED);
+        sendEventResult(Event.onShowFailed);
     }
 
     @Override
     public void onInterstitialClosed() {
-        sendEventResult(CALLBACK_CLOSED);
+        sendEventResult(Event.onClosed);
     }
 }

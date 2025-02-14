@@ -14,17 +14,17 @@ public class BannerCallbacksHandler extends CallbackHandler implements BannerCal
 
     @Override
     public void onBannerClicked() {
-        sendEventResult(CALLBACK_CLICKED);
+        sendEventResult(Event.onClick);
     }
 
     @Override
     public void onBannerExpired() {
-        sendEventResult(CALLBACK_EXPIRED);
+        sendEventResult(Event.onExpired);
     }
 
     @Override
     public void onBannerFailedToLoad() {
-        sendEventResult(CALLBACK_LOAD_FAILED);
+        sendEventResult(Event.onLoadFailed);
     }
 
     @Override
@@ -33,18 +33,18 @@ public class BannerCallbacksHandler extends CallbackHandler implements BannerCal
             JSONObject vals = new JSONObject();
             vals.put("height", height);
             vals.put("isPrecache", isPrecache);
-            sendEventResult(CALLBACK_LOADED, vals);
+            sendEventResult(Event.onLoaded, vals);
         } catch (JSONException ignored) {
         }
     }
 
     @Override
     public void onBannerShown() {
-        sendEventResult(CALLBACK_SHOWN);
+        sendEventResult(Event.onShown);
     }
 
     @Override
     public void onBannerShowFailed() {
-        sendEventResult(CALLBACK_SHOW_FAILED);
+        sendEventResult(Event.onShowFailed);
     }
 }
