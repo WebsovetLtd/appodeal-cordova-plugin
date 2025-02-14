@@ -193,25 +193,15 @@ public class CDVAppodeal extends CordovaPlugin {
 
     private boolean actionShow(JSONArray args, CallbackContext callback) throws JSONException {
         final int adType = args.getInt(0);
-        final String placement = args.getString(1);
+        final String placement = args.optString(1, null);
 
-        runOnUiThread(() -> {
-            boolean res = false;
-            boolean isBanner = adType == Appodeal.BANNER ||
-                    adType == Appodeal.BANNER_LEFT ||
-                    adType == Appodeal.BANNER_RIGHT ||
-                    adType == Appodeal.BANNER_BOTTOM ||
-                    adType == Appodeal.BANNER_TOP;
+        boolean res;
+        if (placement == null)
+            res = Appodeal.show(cordova.getActivity(), adType);
+        else
+            res = Appodeal.show(cordova.getActivity(), adType, placement);
 
-            if (isBanner) {
-                res = showBanner(adType, placement);
-            } else {
-                res = Appodeal.show(cordova.getActivity(), adType);
-            }
-
-            sendPluginResOK(callback, res);
-        });
-
+        sendPluginResOK(callback, res);
         return true;
     }
 
@@ -269,14 +259,6 @@ public class CDVAppodeal extends CordovaPlugin {
 
         sendPluginResOK(callback, vals);
     }
-
-    private boolean showBanner(int adType, String placement) {
-        if (placement == null)
-            return Appodeal.show(cordova.getActivity(), adType);
-
-        return Appodeal.show(cordova.getActivity(), adType, placement);
-    }
-
 
     private static void log(String message) {
         if (Appodeal.getLogLevel().equals(Log.LogLevel.debug) || Appodeal.getLogLevel().equals(Log.LogLevel.verbose)) {
