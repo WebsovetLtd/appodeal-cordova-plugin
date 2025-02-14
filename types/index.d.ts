@@ -63,7 +63,7 @@ declare class Appodeal {
 	EVENT_SHOW_FAILED: "onShowFailed"
 
 	initialize: (appKey: string, adTypes: number, callback?: Func<void>) => Promise<void>
-	show: (adType: AdType, placement: string, callback?: Func<void>) => Promise<void>
+	show: (adType: AdType, placement?: string, callback?: Func<void>) => Promise<void>
 	isLoaded: (adType: AdType, callback?: Func<boolean>) => Promise<boolean>
 	cache: (adType: AdType, callback?: Func<void>) => Promise<void>
 	hide: (adType: AdType, callback?: Func<void>) => Promise<void>
