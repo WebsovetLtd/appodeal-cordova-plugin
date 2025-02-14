@@ -184,7 +184,7 @@ public class CDVAppodeal extends CordovaPlugin {
             Appodeal.initialize(cordova.getActivity(), appKey, adType, errors -> {
                 isInitialized = true;
                 log("SDK initialized");
-                callback.success();
+                sendPluginResOK(callback);
             });
         });
 
@@ -209,8 +209,7 @@ public class CDVAppodeal extends CordovaPlugin {
                 res = Appodeal.show(cordova.getActivity(), adType);
             }
 
-            if (res) callback.success();
-            else callback.error(0);
+            sendPluginResOK(callback, res);
         });
 
         return true;
@@ -220,7 +219,7 @@ public class CDVAppodeal extends CordovaPlugin {
         final int adType = args.getInt(0);
         runOnUiThread(() -> {
             Appodeal.hide(cordova.getActivity(), adType);
-            callback.success();
+            sendPluginResOK(callback);
         });
         return true;
     }
