@@ -14,11 +14,6 @@ Appodeal.BANNER_RIGHT = 2048;  // 100000000000
 Appodeal.REWARDED_VIDEO = 128; // 000010000000
 Appodeal.MREC = 256;           // 000100000000
 
-Appodeal.BANNER_X_SMART = 0;
-Appodeal.BANNER_X_CENTER = 1;
-Appodeal.BANNER_X_LEFT = 2;
-Appodeal.BANNER_X_RIGHT = 3;
-
 Appodeal.LogLevel = {
   NONE: "none",
   DEBUG: "debug",
@@ -42,6 +37,15 @@ Appodeal.EVENT_EXPIRED = "onExpired";
 Appodeal.EVENT_SHOW_FAILED = "onShowFailed";
 
 Appodeal.pluginVersion = '3.3.0';
+
+// Promise.withResolvers polyfill
+Promise.withResolvers || (Promise.withResolvers = function withResolvers() {
+  var a, b, c = new this(function (resolve, reject) {
+    a = resolve;
+    b = reject;
+  });
+  return {resolve: a, reject: b, promise: c};
+});
 
 Appodeal.initialize = function (appKey, adTypes, callback) {
   let { promise, resolve, reject } = Promise.withResolvers();
