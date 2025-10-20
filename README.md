@@ -6,9 +6,9 @@ This is an unofficial Appodeal Cordova plugin, created to support Appodeal SDK w
 
 | Ad type        | Android | iOS |
 |----------------|---------|-----|
-| Banners        | +       | -   |
-| Interstitial   | +       | -   |
-| Rewarded Video | +       | -   |
+| Banners        | +       | +   |
+| Interstitial   | +       | +   |
+| Rewarded Video | +       | +   |
 | MREC           | -       | -   |
 | Native         | -       | -   |
 
@@ -77,5 +77,5 @@ Appodeal.show(Appodeal.REWARDED_VIDEO, function (result) {
 
 ## appodeal SDK versions:
 
-iOS: ~~3.0.2 (must use XCode 14+, with Rosetta when on an Apple silicon processor)~~ \
+iOS: 3.10.0
 android: 3.4.1.0

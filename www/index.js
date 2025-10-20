@@ -36,7 +36,7 @@ Appodeal.EVENT_FINISHED = "onFinished";
 Appodeal.EVENT_EXPIRED = "onExpired";
 Appodeal.EVENT_SHOW_FAILED = "onShowFailed";
 
-Appodeal.pluginVersion = '3.3.0';
+Appodeal.pluginVersion = '3.4.0';
 
 // Promise.withResolvers polyfill
 Promise.withResolvers || (Promise.withResolvers = function withResolvers() {
