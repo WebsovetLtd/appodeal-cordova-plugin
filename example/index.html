@@ -1,120 +1,263 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Hello Appodeal</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <title>Hello World</title>
 </head>
+<body>
+<div class="app">
+    <h1>appodeal example app</h1>
+    <div>init: <span id="initStatus">false</span></div>
+    <div>
+        <h2>banners</h2>
 
-<body style="background-color:red;/* position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;*/">
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
+        <label for="banner_type">type</label>
+        <select id="banner_type">
+            <option value="BANNER_TOP">BANNER_TOP</option>
+            <option value="BANNER_BOTTOM">BANNER_BOTTOM</option>
+            <option value="BANNER_LEFT">BANNER_LEFT</option>
+            <option value="BANNER_RIGHT">BANNER_RIGHT</option>
+        </select>
+        <div>
+            <label for="placement_name">placement (optional)</label>
+            <input id="placement_name" type="text" placeholder="placement name" value="">
+        </div>
+        <div>
+            <button onclick="showBanner()">show banner</button>
+            <button onclick="hideBanner()">hide</button>
+        </div>
+    </div>
 
-    function initialize() {
-        var appodealKey;
-        if( /(android)/i.test(navigator.userAgent) ) { // set appkey for android || amazon-fireos
-          appKey = "c75ea0561e385892e15b1902fce4e59aeebe4f4415de6620";
-        } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // set appkey for ios
-          appKey = "2a0cba87a1dfcb230bb26c2336827e9c2dcf1404f85eca9d";
-        };
+    <div>
+        <h2>other</h2>
 
-        Appodeal.setLogLevel(Appodeal.LogLevel.verbose); // set logging level (none || debug || verbose)
-        Appodeal.setTesting(false); // set test mode enabled || disabled
-        Appodeal.setBannerAnimation(false);
-        Appodeal.setBannerBackground(false);
-        Appodeal.setSmartBanners(false);
-        Appodeal.set728x90Banners(false);
-        Appodeal.setChildDirectedTreatment(false);
-        Appodeal.hasStatusBarPlugin(true);
-        Appodeal.muteVideosIfCallsMuted(true);
-        
-        setUserSettings(); // set user data
-        
-        Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, false);
-        Appodeal.manageConsent(appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER | Appodeal.REWARDED_VIDEO);
-        
-        Appodeal.setCustomIntegerRule("rule_name", 1);
-        Appodeal.setCustomDoubleRule("rule_name", 1.0);
-        Appodeal.setCustomBooleanRule("rule_name", true);
-        Appodeal.setCustomStringRule("rule_name", "rule_value");
-        
-        registerAdEvents();
-    }
-    
-    function setUserSettings() {
-        Appodeal.setUserId("awesome_user");
-        Appodeal.setAge(25);
-        Appodeal.setGender("female");
-    }
-    
-    function showInterstitial() {
-        Appodeal.show(Appodeal.INTERSTITIAL, function(result) { // check if INTERSTITIAL was shown
-            if (result) { // returns true or false 
-                console.log("Appodeal Ads Shown");
-            }
-        });
-    }
-    
-    function showRewardedVideo() {
-        Appodeal.getRewardParameters(function(result) {
-            console.log("Appodeal Reward Amount:" + result.amount);
-            console.log("Appodeal Reward Currency:" + result.currency);
-        });
-        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false 
-                Appodeal.showWithPlacement(Appodeal.REWARDED_VIDEO, "rewarded_video_button");
-            } else {
-                Appodeal.cache(Appodeal.REWARDED_VIDEO);
-            }
-        });
-    }
-    
-    function showBanner() {
-        Appodeal.canShow(Appodeal.BANNER_BOTTOM, function(result) { // check if BANNER_BOTTOM can be shown for 'default' placement
-            if(result) { // returns true or false 
-                Appodeal.show(Appodeal.BANNER_BOTTOM);
-            }
-        });
-    }
-    
-    function hideBanner() {
-        Appodeal.hide(Appodeal.BANNER);
-    }
+        <div>
+            <button onclick="showInterstitial()">show interstitial</button>
+        </div>
 
-    function showTestScreen() {
-        Appodeal.showTestScreen();
+        <div>
+            <button onclick="getRewardInfo()">show reward info </button>
+            <button onclick="showRewardedVideo()">show rewarded video</button>
+        </div>
+    </div>
+
+    <div>
+        <h2>callbacks</h2>
+        <textarea id="callbacks_output" class="fullscreen-ta"></textarea>
+    </div>
+
+</div>
+
+<script src="cordova.js"></script>
+<script>
+  let Appodeal = null;
+  document.addEventListener('deviceready', onDeviceReady, false);
+
+  function onDeviceReady() {
+    console.log("onDeviceReady");
+
+    initAppo();
+  }
+
+  function initAppo() {
+    Appodeal = window.plugins.Appodeal;
+
+    Appodeal.setTesting(true);
+    Appodeal.setLogLevel(Appodeal.LogLevel.VERBOSE);
+
+    Appodeal.setUserId("awesome_user");
+
+    setSettings();
+
+    // appid: com.appodeal.sandbox
+    // admob: ca-app-pub-3940256099942544~1458002511
+    // appodeal: dee74c5129f53fc629a44a690a02296694e3eef99f2d3a5f
+    // keys above requires: Appodeal.setTesting(true);
+    Appodeal.initialize(
+      "dee74c5129f53fc629a44a690a02296694e3eef99f2d3a5f",
+      Appodeal.BANNER | Appodeal.INTERSTITIAL | Appodeal.REWARDED_VIDEO
+    ).then(resp => {
+      console.log('initialize done', resp)
+      initStatus.innerHTML = "true";
+    });
+
+    setCustomData();
+
+    registerAdEvents();
+
+  }
+
+  function setSettings() {
+    Appodeal.setBannerAnimation(false);
+    Appodeal.setSmartBanners(false);
+    Appodeal.set728x90Banners(false);
+    Appodeal.setChildDirectedTreatment(false);
+    Appodeal.muteVideosIfCallsMuted(true);
+
+    Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, false); // see showRewardedVideo()
+  }
+
+  function setCustomData() {
+    Appodeal.setExtraData("rule_int", 1);
+    Appodeal.setExtraData("rule_double", 1.1);
+    Appodeal.setExtraData("rule_bool", true);
+    Appodeal.setExtraData("rule_string", "rule_value");
+  }
+
+  function showBanner() {
+    Appodeal.show(Appodeal[banner_type.value], placement_name.value);
+  }
+
+  function hideBanner() {
+    Appodeal.hide(Appodeal[banner_type.value]);
+  }
+
+  function showInterstitial() {
+    Appodeal.show(Appodeal.INTERSTITIAL);
+  }
+
+  function showRewardedVideo() {
+    Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
+      if (result) { // returns true or false
+        Appodeal.show(Appodeal.REWARDED_VIDEO);
+      } else {
+        Appodeal.cache(Appodeal.REWARDED_VIDEO);
+      }
+    });
+  }
+
+  function getRewardInfo() {
+    Appodeal.getRewardParameters().then(result => {
+        callbacks_output.value += `getRewardParameters: ${JSON.stringify(result)}\n`;
+    });
+  }
+
+  function registerAdEvents() {
+    Appodeal.setBannerCallbacks(function (data) {
+      callbacks_output.value += `Banner: ${JSON.stringify(data)}\n`;
+    });
+
+    Appodeal.setInterstitialCallbacks(function (data) {
+      callbacks_output.value += `Interstitial: ${JSON.stringify(data)}\n`;
+    });
+
+    Appodeal.setRewardedVideoCallbacks(function (data) {
+      callbacks_output.value += `RewardedVideo: ${JSON.stringify(data)}\n`;
+    });
+  }
+
+</script>
+
+<style>
+::-moz-selection {
+    background: #d2dae2;
+    color: #1e272e;
+}
+
+::selection {
+    background: #d2dae2;
+    color: #1e272e;
+}
+
+html, body {
+    min-height: 100vh;
+    min-width: 100vw;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 5vmin;
+
+    background-color: #1a1d1f;
+
+    color: #808e9b;
+}
+
+body {
+    animation: bodyBlur 0.8s ease-out 1 normal forwards;
+}
+
+.app {
+    padding: 1em 2em;
+}
+
+@-webkit-keyframes bodyBlur {
+    from {
+        -webkit-filter: blur(50px);
+        filter: blur(50px);
     }
-    
-    function registerAdEvents() {
-        Appodeal.setInterstitialCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            });
-        Appodeal.setBannerCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event + ", height: " + container.height + ", isPrecache: " + container.isPrecache;
-            document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event;
-        });
-        Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
-        });
+    to {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
     }
-    </script>
-    <p style="font-size:25px;color:white;">Appodeal Cordova Demo</p>
-    <button id="initialize" onclick="initialize();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Initialize</button>
-    <button id="interstitial" onclick="showInterstitial();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Interstitial</button>
-    <button id="rewarded" onclick="showRewardedVideo();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Rewarded Video</button>
-    <button id="showBanner" onclick="showBanner();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Show Banner</button>
-    <button id="showTestScreen" onclick="showTestScreen();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Show TestScreen</button>
-    <button id="hideBanner" onclick="hideBanner();" style="width:100%;height:50px; margin-top:10px;background-color:white;color:red;">Hide Banner</button>
-    <p id="callbackContainer">Callback events data</p>
+}
+
+@keyframes bodyBlur {
+    from {
+        -webkit-filter: blur(50px);
+        filter: blur(50px);
+    }
+    to {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+    }
+}
+
+h1 {
+    font-weight: 500;
+
+    background-image: -webkit-repeating-linear-gradient(left, rgb(177, 61, 190) 0%, rgb(252, 100, 77) 100%);
+    background-image: -o-repeating-linear-gradient(left, rgb(177, 61, 190) 0%, rgb(252, 100, 77) 100%);
+    background-image: repeating-linear-gradient(to right, rgb(177, 61, 190) 0%, rgb(252, 100, 77) 100%);
+    background-image: -ms-repeating-linear-gradient(left, rgb(177, 61, 190) 0%, rgb(252, 100, 77) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+a {
+    color: #808e9b;
+    -webkit-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #d2dae2;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list .item {
+    line-height: 1.7em;
+}
+
+.clr-vk {
+    color: #4a76a8;
+}
+
+.clr-tg {
+    color: #0088cc;
+}
+
+.clr-steam {
+    color: #2a475e;
+    /*color: #5491cf;*/
+}
+
+.fullscreen-ta {
+    width: 100%;
+    height: 95vh;
+}
+</style>
+
 </body>
-
 </html>
